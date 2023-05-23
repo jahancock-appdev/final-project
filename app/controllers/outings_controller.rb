@@ -20,11 +20,12 @@ class OutingsController < ApplicationController
 
   def create
     the_outing = Outing.new
-    the_outing.status = params.fetch("query_status")
-
+    #the_outing.status = params.fetch("query_status")
+    the_outing.status = "In progress"
     if the_outing.valid?
       the_outing.save
-      redirect_to("/outings", { :notice => "Outing created successfully." })
+      #redirect_to("/outings", { :notice => "Outing created successfully." })
+      redirect_to("/outings/#{the_outing.id}", { :notice => "Outing created successfully." })
     else
       redirect_to("/outings", { :alert => the_outing.errors.full_messages.to_sentence })
     end
