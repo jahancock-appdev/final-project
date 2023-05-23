@@ -13,13 +13,14 @@ task({ :sample_data => :environment}) do
   #Add users
   25.times do
     user = User.new
-    user.username = Faker::Internet.user('username')
+    user.username = Faker::Internet.user('username')[:username]
     user.first_name = Faker::Name.first_name
     user.last_name = Faker::Name.last_name
     user.email = Faker::Internet.email
     user.password = "password"
     user.save
   end
+  p "Added #{User.count} users"
 
   #Add restaurants
   price_points = ["$", "$$", "$$$"]
@@ -32,7 +33,8 @@ task({ :sample_data => :environment}) do
     restaurant.bookmarks_count = 0
     restaurant.save
   end
-
+  p "Added #{Restaurant.count} restaurants"
+  
   users = User.all
   restaurants = Restaurant.all
   #Add bookmarks
@@ -42,6 +44,7 @@ task({ :sample_data => :environment}) do
     bookmark.user_id = users.sample.id
     bookmark.save
   end
+  p "Added #{Bookmark.count} bookmarks"
 
   #Add outings
   status = ["In progress", "Complete"]
@@ -50,17 +53,18 @@ task({ :sample_data => :environment}) do
     outing.status = status.sample
     outing.save
   end
+  p "Added #{Outing.count} outings"
 
   #Add invitations
   num_invites = [2,3,4]
   outings = Outing.all
   outings.each do |outing|
     num = num_invites.sample
-    
+    "Outing #{outing.id}"
     num.times do
       invite = Invitation.new
       invite.outing_id = outing.id
-      invite.user_id = users.sample
+      invite.user_id = users.sample.id
 
       if outing.status == "Complete"
         invite.status = "Complete"
@@ -70,20 +74,20 @@ task({ :sample_data => :environment}) do
       invite.save
     end
   end
+  p "Added #{Invitation.count} invites"
 
   #Add outing options
   outings.each do |outing|
-    
     10.times do
       option = OutingOption.new
       option.outing_id = outing.id
-      option.restaurant_id = restaurants.sample
+      option.restaurant_id = restaurants.sample.id
       option.save
     end
   end
+  p "Added #{OutingOption.count} options"
 
-  #Add outing selections
-  outing_options = OutingOption.all
+  # #Add outing selections
   outings.each do |outing|
     the_id = outing.id
     outing_options = OutingOption.where({:outing_id => the_id})
@@ -103,4 +107,5 @@ task({ :sample_data => :environment}) do
     end
   end
   
+  p "Added #{OutingSelection.count} options"
 end
