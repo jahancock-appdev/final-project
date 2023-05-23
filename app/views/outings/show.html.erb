@@ -44,28 +44,28 @@
 </div>
 
 <hr>
-
-
 <div>
   <div>
     <h2>
-      Edit outing
+      Add a new invitation
     </h2>
 
-    <form action="/modify_outing/<%= @the_outing.id %>"  method="post" >
+    <form action="/insert_invitation" method="post">
       <div>
-        <label for="status_box">
-          Status
+            <input type="hidden" name="query_outing_id" value = "<%= @the_outing.id %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
         </label>
 
-        <input type="text" id="status_box" name="query_status" value="<%= @the_outing.status %>">
+        <input type="text" id="user_id_box" name="query_user_id">
       </div>
 
       <button>
-        Update outing
+        Create invitation
       </button>
     </form>
   </div>
 </div>
-
-<hr>
