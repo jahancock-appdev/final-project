@@ -77,7 +77,7 @@ task({ :sample_data => :environment}) do
     10.times do
       option = OutingOption.new
       option.outing_id = outing.id
-      option.restaurant_id = restaurant.sample
+      option.restaurant_id = restaurants.sample
       option.save
     end
   end
