@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # READ
   get("/outing_selections", { :controller => "outing_selections", :action => "index" })
   
-  get("/outing_selections/:path_id", { :controller => "outing_selections", :action => "show" })
+  get("/outing_selections/:path_id", { :controller => "outing_selections", :action => "make_selections" })
   
   # UPDATE
   

@@ -1,0 +1,22 @@
+<div>
+  <div>
+    <h1>
+      Outing selection #<%= @the_outing_selection.first.outing_id %> details
+    </h1>
+
+  <form action="/insert_outing_selection" method="post">
+  <fieldset>
+    <legend>Choose the restaurants that interest you</legend>
+    <% @the_outing_selection.each do |selection| %>
+    <div>
+      <label>
+        <input type="checkbox" id="<%= selection.id %>" name="interest[]" value="<%= selection.id %>" />
+        <%= selection.restaurant.name %>
+      </label>
+    </div>
+    <% end %>
+    <div>
+      <button>Submit form</button>
+    </div>
+  </fieldset>
+</form>

@@ -1,4 +1,18 @@
 class OutingSelectionsController < ApplicationController
+  def make_selections
+    the_id = params.fetch("path_id")
+
+    matching_outing = Outing.find_by({ :id => the_id })
+    user_matches = matching_outing.invitations.find_by(user_id: @current_user.id)
+    
+    if user_matches != nil
+      @the_outing_selection = matching_outing.outing_options
+      render({ :template => "outing_selections/make_selections.html.erb" })
+    else
+      redirect_to("/", {:alert => "[[You do not have an outstanding submission for this outing.]]"})
+    end
+  end
+
   def index
     matching_outing_selections = OutingSelection.all
 

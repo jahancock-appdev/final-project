@@ -40,7 +40,7 @@ class OutingOptionsController < ApplicationController
     end
     
     if the_outing_options.length == OutingOption.where({outing_id: the_outing}).length
-      redirect_to("/outing_options", { :notice => "Outing option created successfully." })
+      redirect_to("/outing_selections/#{the_outing}", { :notice => "Outing option created successfully." })
     else
       redirect_to("/outing_options", { :alert => the_outing_option.errors.full_messages.to_sentence })
     end
