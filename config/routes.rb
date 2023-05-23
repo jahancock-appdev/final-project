@@ -2,6 +2,44 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Bookmark resource:
+
+  # CREATE
+  post("/insert_bookmark", { :controller => "bookmarks", :action => "create" })
+          
+  # READ
+  get("/bookmarks", { :controller => "bookmarks", :action => "index" })
+  
+  get("/bookmarks/:path_id", { :controller => "bookmarks", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_bookmark/:path_id", { :controller => "bookmarks", :action => "update" })
+  
+  # DELETE
+  get("/delete_bookmark/:path_id", { :controller => "bookmarks", :action => "destroy" })
+
+  #------------------------------
+
+  # Routes for the Restaurant resource:
+
+  # CREATE
+  post("/insert_restaurant", { :controller => "restaurants", :action => "create" })
+          
+  # READ
+  get("/restaurants", { :controller => "restaurants", :action => "index" })
+  
+  get("/restaurants/:path_id", { :controller => "restaurants", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_restaurant/:path_id", { :controller => "restaurants", :action => "update" })
+  
+  # DELETE
+  get("/delete_restaurant/:path_id", { :controller => "restaurants", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the User account:
 
   # SIGN UP FORM
