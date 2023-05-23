@@ -15,7 +15,7 @@ class OutingsController < ApplicationController
 
     @the_outing = matching_outings.at(0)
 
-    @list_of_invitations = Outing.invitations
+    @list_of_invitations = @the_outing.invitations
 
     render({ :template => "outings/show.html.erb" })
   end
@@ -26,8 +26,17 @@ class OutingsController < ApplicationController
     the_outing.status = "In progress"
     if the_outing.valid?
       the_outing.save
-      #redirect_to("/outings", { :notice => "Outing created successfully." })
-      redirect_to("/outings/#{the_outing.id}", { :notice => "Outing created successfully." })
+      the_invite = Invitation.new
+
+      the_invite.outing_id = the_outing.id
+      the_invite.user_id = @current_user.id
+      the_invite.status = "In progress"
+        if the_invite.valid?
+          the_invite.save
+          redirect_to("/outings/#{the_outing.id}", { :notice => "Outing created successfully." })
+        else
+          redirect_to("/outings", { :alert => the_invite.errors.full_messages.to_sentence })
+        end
     else
       redirect_to("/outings", { :alert => the_outing.errors.full_messages.to_sentence })
     end
