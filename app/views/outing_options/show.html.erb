@@ -51,36 +51,3 @@
 </div>
 
 <hr>
-
-
-<div>
-  <div>
-    <h2>
-      Edit outing option
-    </h2>
-
-    <form action="/modify_outing_option/<%= @the_outing_option.id %>"  method="post" >
-      <div>
-        <label for="outing_id_box">
-          Outing
-        </label>
-
-        <input type="text" id="outing_id_box" name="query_outing_id" value="<%= @the_outing_option.outing_id %>">
-      </div>
-
-      <div>
-        <label for="restaurant_id_box">
-          Restaurant
-        </label>
-
-        <input type="text" id="restaurant_id_box" name="query_restaurant_id" value="<%= @the_outing_option.restaurant_id %>">
-      </div>
-
-      <button>
-        Update outing option
-      </button>
-    </form>
-  </div>
-</div>
-
-<hr>
