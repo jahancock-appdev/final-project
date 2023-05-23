@@ -20,7 +20,7 @@ class BookmarksController < ApplicationController
   def create
     the_bookmark = Bookmark.new
     the_bookmark.restaurant_id = params.fetch("query_restaurant_id")
-    the_bookmark.user_id = params.fetch("query_user_id")
+    the_bookmark.user_id = @current_user.id
 
     if the_bookmark.valid?
       the_bookmark.save
