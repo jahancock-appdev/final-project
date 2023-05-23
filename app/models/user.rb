@@ -20,4 +20,6 @@ class User < ApplicationRecord
   has_many  :bookmarks, class_name: "Bookmark", foreign_key: "user_id", dependent: :destroy
   
   has_many  :invitations, class_name: "Invitation", foreign_key: "user_id", dependent: :destroy
+
+  has_many :outings, through: :invitations, source: :outing
 end

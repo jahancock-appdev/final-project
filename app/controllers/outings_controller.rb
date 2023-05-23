@@ -1,6 +1,7 @@
 class OutingsController < ApplicationController
   def index
-    matching_outings = Outing.all
+    matching_outings = @current_user.outings
+    #matching_outings = Outing.all
 
     @list_of_outings = matching_outings.order({ :created_at => :desc })
 
