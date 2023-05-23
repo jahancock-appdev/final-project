@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get("/", { :controller => "outings", :action => "index" })
 
 
   # Routes for the Outing selection resource:
