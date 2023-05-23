@@ -9,4 +9,6 @@
 #  user_id       :integer
 #
 class Bookmark < ApplicationRecord
+  belongs_to :user, required: true, class_name: "User", foreign_key: "user_id", counter_cache: true
+  belongs_to :restaurant, required: true, class_name: "Restaurant", foreign_key: "restaurant_id", counter_cache: true
 end

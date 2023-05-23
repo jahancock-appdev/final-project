@@ -8,4 +8,6 @@
 #  updated_at :datetime         not null
 #
 class Outing < ApplicationRecord
+  has_many  :invitations, class_name: "Invitation", foreign_key: "outing_id", dependent: :destroy
+  has_many  :outing_options, class_name: "OutingOption", foreign_key: "outing_id", dependent: :destroy
 end
