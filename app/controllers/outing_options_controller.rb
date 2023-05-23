@@ -18,14 +18,28 @@ class OutingOptionsController < ApplicationController
   end
 
   def create
-    the_outing_option = OutingOption.new
-    the_outing_option.outing_id = params.fetch("query_outing_id")
+    the_outing = params.fetch("query_outing_id")
     
-    
-    #the_outing_option.restaurant_id = params.fetch("query_restaurant_id")
+    #Find users invited to this outing
+    the_participants = Outing.find_by({id: the_outing}).users.map_relation_to_array(:id)
 
-    if the_outing_option.valid?
-      the_outing_option.save
+    #Find their subset of bookmarked restaurants
+    bookmarked_restaurants = Bookmark.where({:user_id => the_participants}).map_relation_to_array(:restaurant_id)
+    
+    #Dedupe the options and select 10 randomly; how to sample without replacement?
+    the_outing_options = Restaurant.where({id: bookmarked_restaurants}).distinct.sample(10)
+
+    the_outing_options.each do |option|
+      the_outing_option = OutingOption.new 
+      the_outing_option.outing_id = params.fetch("query_outing_id")
+      the_outing_option.restaurant_id = option.id
+      ###Add status later
+      if the_outing_option.valid?  
+        the_outing_option.save
+      end
+    end
+    
+    if the_outing_options.length == OutingOption.where({outing_id: the_outing}).length
       redirect_to("/outing_options", { :notice => "Outing option created successfully." })
     else
       redirect_to("/outing_options", { :alert => the_outing_option.errors.full_messages.to_sentence })
