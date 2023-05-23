@@ -20,7 +20,9 @@ class OutingOptionsController < ApplicationController
   def create
     the_outing_option = OutingOption.new
     the_outing_option.outing_id = params.fetch("query_outing_id")
-    the_outing_option.restaurant_id = params.fetch("query_restaurant_id")
+    
+    
+    #the_outing_option.restaurant_id = params.fetch("query_restaurant_id")
 
     if the_outing_option.valid?
       the_outing_option.save
