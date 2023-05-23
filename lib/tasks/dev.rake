@@ -1,5 +1,13 @@
 desc "Hydrate the database with some sample data to look at so that developing is easier"
 task({ :sample_data => :environment}) do
+  #User.destroy_all
+  # Restaurant.destroy_all
+  # Bookmark.destroy_all
+  # Outing.destroy_all
+  # Invitation.destroy_all
+  # OutingOption.destroy_all
+  # OutingSelection.destroy_all
+
   require 'faker'
 
   #Add users
@@ -37,7 +45,7 @@ task({ :sample_data => :environment}) do
 
   #Add outings
   status = ["In progress", "Complete"]
-  15 times do
+  15.times do
     outing = Outing.new
     outing.status = status.sample
     outing.save
