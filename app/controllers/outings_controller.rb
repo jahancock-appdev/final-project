@@ -15,6 +15,8 @@ class OutingsController < ApplicationController
 
     @the_outing = matching_outings.at(0)
 
+    @list_of_invitations = Outing.invitations
+
     render({ :template => "outings/show.html.erb" })
   end
 

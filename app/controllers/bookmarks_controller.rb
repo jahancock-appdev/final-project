@@ -21,6 +21,11 @@ class BookmarksController < ApplicationController
     the_bookmark = Bookmark.new
     the_bookmark.restaurant_id = params.fetch("query_restaurant_id")
     the_bookmark.user_id = @current_user.id
+    
+    #Add first invitation
+    the_bookmark = Bookmark.new
+    the_bookmark.restaurant_id = params.fetch("query_restaurant_id")
+    the_bookmark.user_id = @current_user.id
 
     if the_bookmark.valid?
       the_bookmark.save
