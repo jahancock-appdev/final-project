@@ -26,6 +26,8 @@ class OutingsController < ApplicationController
     the_outing.status = "In progress"
     if the_outing.valid?
       the_outing.save
+
+      #Generate invite to track user who generated outing
       the_invite = Invitation.new
 
       the_invite.outing_id = the_outing.id

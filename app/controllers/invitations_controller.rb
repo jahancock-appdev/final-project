@@ -21,13 +21,13 @@ class InvitationsController < ApplicationController
     the_invitation = Invitation.new
     the_invitation.outing_id = params.fetch("query_outing_id")
     the_invitation.user_id = params.fetch("query_user_id")
-    the_invitation.status = params.fetch("query_status")
+    the_invitation.status = "In progress"
 
     if the_invitation.valid?
       the_invitation.save
-      redirect_to("/invitations", { :notice => "Invitation created successfully." })
+      redirect_to("/outings/#{the_invitation.outing_id}", { :notice => "Invitation created successfully." })
     else
-      redirect_to("/invitations", { :alert => the_invitation.errors.full_messages.to_sentence })
+      redirect_to("/outings/#{the_invitation.outing_id}", { :alert => the_invitation.errors.full_messages.to_sentence })
     end
   end
 

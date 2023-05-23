@@ -60,7 +60,13 @@
           User
         </label>
 
-        <input type="text" id="user_id_box" name="query_user_id">
+        <select name="query_user_id" id="user_id_box">
+          <% User.all.order(:username).each do |user|%>
+            <option value="<%=user.id%>">
+              <%= user.username %>
+            </option>
+          <% end%>
+        </select>
       </div>
 
       <button>
@@ -115,7 +121,7 @@
         </td>
 
         <td>
-          <%= an_invitation.user_id %>
+          <%= "#{an_invitation.user.first_name} #{an_invitation.user.last_name}" %>
         </td>
 
         <td>
