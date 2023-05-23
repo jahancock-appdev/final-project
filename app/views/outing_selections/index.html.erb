@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all outing selections
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new outing selection
+    </h2>
+
+    <form action="/insert_outing_selection" method="post">
+      <div>
+        <label for="option_id_box">
+          Option
+        </label>
+
+        <input type="text" id="option_id_box" name="query_option_id">
+      </div>
+
+      <div>
+        <label for="invitation_id_box">
+          Invitation
+        </label>
+
+        <input type="text" id="invitation_id_box" name="query_invitation_id">
+      </div>
+
+      <div>
+        <label for="status_box">
+          Status
+        </label>
+
+        <input type="text" id="status_box" name="query_status">
+      </div>
+
+      <button>
+        Create outing selection
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Option
+        </th>
+
+        <th>
+          Invitation
+        </th>
+
+        <th>
+          Status
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_outing_selections.each do |an_outing_selection| %>
+      <tr>
+        <td>
+          <%= an_outing_selection.id %>
+        </td>
+
+        <td>
+          <%= an_outing_selection.option_id %>
+        </td>
+
+        <td>
+          <%= an_outing_selection.invitation_id %>
+        </td>
+
+        <td>
+          <%= an_outing_selection.status %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_outing_selection.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_outing_selection.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/outing_selections/<%= an_outing_selection.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

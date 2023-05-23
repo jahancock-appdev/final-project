@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Outing selection #<%= @the_outing_selection.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/outing_selections">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_outing_selection/<%= @the_outing_selection.id %>">
+          Delete outing selection
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Option
+      </dt>
+      <dd>
+        <%= @the_outing_selection.option_id %>
+      </dd>
+
+      <dt>
+        Invitation
+      </dt>
+      <dd>
+        <%= @the_outing_selection.invitation_id %>
+      </dd>
+
+      <dt>
+        Status
+      </dt>
+      <dd>
+        <%= @the_outing_selection.status %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_outing_selection.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_outing_selection.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit outing selection
+    </h2>
+
+    <form action="/modify_outing_selection/<%= @the_outing_selection.id %>"  method="post" >
+      <div>
+        <label for="option_id_box">
+          Option
+        </label>
+
+        <input type="text" id="option_id_box" name="query_option_id" value="<%= @the_outing_selection.option_id %>">
+      </div>
+
+      <div>
+        <label for="invitation_id_box">
+          Invitation
+        </label>
+
+        <input type="text" id="invitation_id_box" name="query_invitation_id" value="<%= @the_outing_selection.invitation_id %>">
+      </div>
+
+      <div>
+        <label for="status_box">
+          Status
+        </label>
+
+        <input type="text" id="status_box" name="query_status" value="<%= @the_outing_selection.status %>">
+      </div>
+
+      <button>
+        Update outing selection
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
