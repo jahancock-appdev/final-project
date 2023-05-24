@@ -1,1 +1,18 @@
 <h1>Select your restaurants</h1>
+
+  <form action="/insert_outing_response" method="post">
+  <fieldset>
+    <legend>Choose the restaurants that interest you</legend>
+    <% @matching_outing.outing_options.each do |selection| %>
+    <div>
+      <label>
+        <input type="checkbox" id="<%= selection.id %>" name="interest[]" value="<%= selection.id %>" />
+        <%= selection.restaurant.name %>
+      </label>
+    </div>
+    <% end %>
+    <div>
+      <button>Submit form</button>
+    </div>
+  </fieldset>
+</form>

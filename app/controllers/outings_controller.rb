@@ -27,7 +27,7 @@ class OutingsController < ApplicationController
       #Show hold message
       render({ :template => "outings/hold.html.erb" })
     else
-      #Prompt user to complete outing response
+      #Prompt user to complete outing response 
       render({ :template => "outings/response_form.html.erb" })
     end  
   end

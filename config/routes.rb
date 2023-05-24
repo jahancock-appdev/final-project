@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get("/outings/:path_id", { :controller => "outings", :action => "show" })
 
   post("/insert_outing", { :controller => "outings", :action => "create" })
+  post("/insert_outing_response", { :controller => "outing_responses", :action => "create" })
 
 
 ##############Ignore
@@ -13,7 +14,6 @@ Rails.application.routes.draw do
   # Routes for the Outing response resource:
 
   # CREATE
-  post("/insert_outing_response", { :controller => "outing_responses", :action => "create" })
           
   # READ
   get("/outing_responses", { :controller => "outing_responses", :action => "index" })
