@@ -10,6 +10,9 @@
         <%= selection.restaurant.name %>
       </label>
     </div>
+    <div>
+      <input type="hidden" name="query_outing_id" value = "<%= @matching_outing.id %>">
+    </div>
     <% end %>
     <div>
       <button>Submit form</button>
