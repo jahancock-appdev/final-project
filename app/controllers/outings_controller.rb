@@ -32,6 +32,9 @@ class OutingsController < ApplicationController
     end  
   end
 
+  def invite
+    render({template: "outings/invitation_form.html.erb"})
+  end
   def index
     matching_outings = Outing.all
 

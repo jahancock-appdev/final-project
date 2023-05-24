@@ -1,0 +1,26 @@
+<h1>Invite your friends to join you for an outing</h1>
+
+<form action="" method="post">
+  <div>
+    <input type="hidden" name="query_sender_id" value = "<%= @current_user.id %>">
+  </div>
+
+  <div>
+    <label for="participant_id_box">
+      Your outing buddy
+    </label>
+
+    <select name="query_user_id" id="participant_id_box">
+      <% User.all.order(:username).each do |user|%>
+        <option value="<%=user.id%>">
+          <%= user.username %>
+        </option>
+      <% end%>
+    </select>
+  </div>
+
+  <button>
+    Create invitation
+  </button>
+
+</form>

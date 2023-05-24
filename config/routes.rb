@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   # Routes for home page
   get("/", controller: "outings", action: "snapshot")
+  get("/outings/new", { :controller => "outings", :action => "invite" })
   get("/outings/:path_id", { :controller => "outings", :action => "show" })
+
+
+##############Ignore
 
   # Routes for the Outing response resource:
 
