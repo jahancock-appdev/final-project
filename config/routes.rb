@@ -2,6 +2,82 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Outing response resource:
+
+  # CREATE
+  post("/insert_outing_response", { :controller => "outing_responses", :action => "create" })
+          
+  # READ
+  get("/outing_responses", { :controller => "outing_responses", :action => "index" })
+  
+  get("/outing_responses/:path_id", { :controller => "outing_responses", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_outing_response/:path_id", { :controller => "outing_responses", :action => "update" })
+  
+  # DELETE
+  get("/delete_outing_response/:path_id", { :controller => "outing_responses", :action => "destroy" })
+
+  #------------------------------
+
+  # Routes for the Outing participant resource:
+
+  # CREATE
+  post("/insert_outing_participant", { :controller => "outing_participants", :action => "create" })
+          
+  # READ
+  get("/outing_participants", { :controller => "outing_participants", :action => "index" })
+  
+  get("/outing_participants/:path_id", { :controller => "outing_participants", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_outing_participant/:path_id", { :controller => "outing_participants", :action => "update" })
+  
+  # DELETE
+  get("/delete_outing_participant/:path_id", { :controller => "outing_participants", :action => "destroy" })
+
+  #------------------------------
+
+  # Routes for the Outing option resource:
+
+  # CREATE
+  post("/insert_outing_option", { :controller => "outing_options", :action => "create" })
+          
+  # READ
+  get("/outing_options", { :controller => "outing_options", :action => "index" })
+  
+  get("/outing_options/:path_id", { :controller => "outing_options", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_outing_option/:path_id", { :controller => "outing_options", :action => "update" })
+  
+  # DELETE
+  get("/delete_outing_option/:path_id", { :controller => "outing_options", :action => "destroy" })
+
+  #------------------------------
+
+  # Routes for the Outing resource:
+
+  # CREATE
+  post("/insert_outing", { :controller => "outings", :action => "create" })
+          
+  # READ
+  get("/outings", { :controller => "outings", :action => "index" })
+  
+  get("/outings/:path_id", { :controller => "outings", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_outing/:path_id", { :controller => "outings", :action => "update" })
+  
+  # DELETE
+  get("/delete_outing/:path_id", { :controller => "outings", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Bookmark resource:
 
   # CREATE

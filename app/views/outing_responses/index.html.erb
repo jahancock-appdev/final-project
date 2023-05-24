@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      List of all outing responses
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new outing response
+    </h2>
+
+    <form action="/insert_outing_response" method="post">
+      <div>
+        <label for="option_id_box">
+          Option
+        </label>
+
+        <input type="text" id="option_id_box" name="query_option_id">
+      </div>
+
+      <div>
+        <label for="participant_id_box">
+          Participant
+        </label>
+
+        <input type="text" id="participant_id_box" name="query_participant_id">
+      </div>
+
+      <div>
+        <input type="checkbox" id="participant_selected_box" name="query_participant_selected" value="1">
+
+        <label for="participant_selected_box">Participant selected</label>
+      </div>
+
+      <button>
+        Create outing response
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Option
+        </th>
+
+        <th>
+          Participant
+        </th>
+
+        <th>
+          Participant selected
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_outing_responses.each do |an_outing_response| %>
+      <tr>
+        <td>
+          <%= an_outing_response.id %>
+        </td>
+
+        <td>
+          <%= an_outing_response.option_id %>
+        </td>
+
+        <td>
+          <%= an_outing_response.participant_id %>
+        </td>
+
+        <td>
+          <%= an_outing_response.participant_selected %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_outing_response.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_outing_response.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/outing_responses/<%= an_outing_response.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

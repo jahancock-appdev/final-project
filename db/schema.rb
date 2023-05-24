@@ -10,11 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_24_022828) do
+ActiveRecord::Schema.define(version: 2023_05_24_023150) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "restaurant_id"
     t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "outing_options", force: :cascade do |t|
+    t.integer "outing_id"
+    t.integer "restaurant_id"
+    t.boolean "all_participants_selected"
+    t.integer "responses_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "outing_participants", force: :cascade do |t|
+    t.integer "outing_id"
+    t.integer "user_id"
+    t.boolean "participant_submitted"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "outing_responses", force: :cascade do |t|
+    t.integer "option_id"
+    t.integer "participant_id"
+    t.boolean "participant_selected"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "outings", force: :cascade do |t|
+    t.boolean "completed"
+    t.integer "sender_id"
+    t.integer "outing_participants_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

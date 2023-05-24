@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Outing #<%= @the_outing.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/outings">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_outing/<%= @the_outing.id %>">
+          Delete outing
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Completed
+      </dt>
+      <dd>
+        <%= @the_outing.completed %>
+      </dd>
+
+      <dt>
+        Sender
+      </dt>
+      <dd>
+        <%= @the_outing.sender_id %>
+      </dd>
+
+      <dt>
+        Outing participants count
+      </dt>
+      <dd>
+        <%= @the_outing.outing_participants_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_outing.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_outing.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit outing
+    </h2>
+
+    <form action="/modify_outing/<%= @the_outing.id %>"  method="post" >
+      <div>
+        <input type="checkbox" id="completed_box" name="query_completed" value="1" <%= "checked" if @the_outing.completed %>>
+
+        <label for="completed_box">
+            Completed
+        </label>
+      </div>
+
+      <div>
+        <label for="sender_id_box">
+          Sender
+        </label>
+
+        <input type="text" id="sender_id_box" name="query_sender_id" value="<%= @the_outing.sender_id %>">
+      </div>
+
+      <div>
+        <label for="outing_participants_count_box">
+          Outing participants count
+        </label>
+
+        <input type="text" id="outing_participants_count_box" name="query_outing_participants_count" value="<%= @the_outing.outing_participants_count %>">
+      </div>
+
+      <button>
+        Update outing
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

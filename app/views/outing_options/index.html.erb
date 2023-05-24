@@ -1,0 +1,132 @@
+<div>
+  <div>
+    <h1>
+      List of all outing options
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new outing option
+    </h2>
+
+    <form action="/insert_outing_option" method="post">
+      <div>
+        <label for="outing_id_box">
+          Outing
+        </label>
+
+        <input type="text" id="outing_id_box" name="query_outing_id">
+      </div>
+
+      <div>
+        <label for="restaurant_id_box">
+          Restaurant
+        </label>
+
+        <input type="text" id="restaurant_id_box" name="query_restaurant_id">
+      </div>
+
+      <div>
+        <input type="checkbox" id="all_participants_selected_box" name="query_all_participants_selected" value="1">
+
+        <label for="all_participants_selected_box">All participants selected</label>
+      </div>
+
+      <div>
+        <label for="responses_count_box">
+          Responses count
+        </label>
+
+        <input type="text" id="responses_count_box" name="query_responses_count">
+      </div>
+
+      <button>
+        Create outing option
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Outing
+        </th>
+
+        <th>
+          Restaurant
+        </th>
+
+        <th>
+          All participants selected
+        </th>
+
+        <th>
+          Responses count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_outing_options.each do |an_outing_option| %>
+      <tr>
+        <td>
+          <%= an_outing_option.id %>
+        </td>
+
+        <td>
+          <%= an_outing_option.outing_id %>
+        </td>
+
+        <td>
+          <%= an_outing_option.restaurant_id %>
+        </td>
+
+        <td>
+          <%= an_outing_option.all_participants_selected %>
+        </td>
+
+        <td>
+          <%= an_outing_option.responses_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_outing_option.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_outing_option.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/outing_options/<%= an_outing_option.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

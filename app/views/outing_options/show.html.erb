@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Outing option #<%= @the_outing_option.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/outing_options">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_outing_option/<%= @the_outing_option.id %>">
+          Delete outing option
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Outing
+      </dt>
+      <dd>
+        <%= @the_outing_option.outing_id %>
+      </dd>
+
+      <dt>
+        Restaurant
+      </dt>
+      <dd>
+        <%= @the_outing_option.restaurant_id %>
+      </dd>
+
+      <dt>
+        All participants selected
+      </dt>
+      <dd>
+        <%= @the_outing_option.all_participants_selected %>
+      </dd>
+
+      <dt>
+        Responses count
+      </dt>
+      <dd>
+        <%= @the_outing_option.responses_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_outing_option.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_outing_option.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit outing option
+    </h2>
+
+    <form action="/modify_outing_option/<%= @the_outing_option.id %>"  method="post" >
+      <div>
+        <label for="outing_id_box">
+          Outing
+        </label>
+
+        <input type="text" id="outing_id_box" name="query_outing_id" value="<%= @the_outing_option.outing_id %>">
+      </div>
+
+      <div>
+        <label for="restaurant_id_box">
+          Restaurant
+        </label>
+
+        <input type="text" id="restaurant_id_box" name="query_restaurant_id" value="<%= @the_outing_option.restaurant_id %>">
+      </div>
+
+      <div>
+        <input type="checkbox" id="all_participants_selected_box" name="query_all_participants_selected" value="1" <%= "checked" if @the_outing_option.all_participants_selected %>>
+
+        <label for="all_participants_selected_box">
+            All participants selected
+        </label>
+      </div>
+
+      <div>
+        <label for="responses_count_box">
+          Responses count
+        </label>
+
+        <input type="text" id="responses_count_box" name="query_responses_count" value="<%= @the_outing_option.responses_count %>">
+      </div>
+
+      <button>
+        Update outing option
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
