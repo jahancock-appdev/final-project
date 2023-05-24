@@ -1,0 +1,82 @@
+<div>
+  <a href="/">Create a new outing!</a>
+</div>
+
+
+<div>
+  <h1>
+    List of all incomplete outings
+  </h1>
+</div>
+
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Completed
+        </th>
+
+        <th>
+          Sender
+        </th>
+
+        <th>
+          Outing participants count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @outstanding_outings.each do |an_outing| %>
+      <tr>
+        <td>
+          <%= an_outing.id %>
+        </td>
+
+        <td>
+          <%= an_outing.completed %>
+        </td>
+
+        <td>
+          <%= an_outing.sender_id %>
+        </td>
+
+        <td>
+          <%= an_outing.outing_participants_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_outing.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_outing.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/outings/<%= an_outing.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

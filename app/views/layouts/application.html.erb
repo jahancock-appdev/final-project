@@ -16,6 +16,32 @@
   </head>
 
   <body>
+   <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/outings">Outings</a></li>
+        <li><a href="/restaurants">Restaurants</a></li>
+        <li><a href="/outing_participants">Invitations</a></li>
+        <li><a href="/outing_responses">Outing Responses</a></li>
+        <li><a href="/outing_options">Outing Options</a></li>
+        <% if @current_user == nil%>
+          <li>
+            <a href="/user_sign_up">Sign up</a>
+          </li>
+          <li>
+            <a href="/user_sign_in">Sign in</a>
+          </li>
+        <% else %>
+          <li>
+            <a href="/bookmarks">Bookmarks</a></li>
+          <li>
+            <a href="/user_sign_out">Sign out</a>
+          </li>
+        <% end%>
+      </ul>
+    </nav>
+    <p style="color: green"><%= notice %></p>
+    <p style="color: red"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

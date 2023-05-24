@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-
+  # Routes for home page
+  get("/", controller: "outings", action: "snapshot")
 
   # Routes for the Outing response resource:
 

@@ -1,4 +1,12 @@
 class OutingsController < ApplicationController
+  def snapshot
+    matching_outings = @current_user.outings
+    @list_of_outings = matching_outings.order({ :created_at => :desc })
+    @outstanding_outings = @current_user.outstanding_outings.order({ :updated_at => :desc })
+    @awaiting_outings = @current_user.awaiting_outings.order({ :updated_at => :desc })
+    @completed_outings = @current_user.completed_outings.order({ :updated_at => :desc })
+    render({template: "outings/snapshot.html.erb"})
+  end
   def index
     matching_outings = Outing.all
 
