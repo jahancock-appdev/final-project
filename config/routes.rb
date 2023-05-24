@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get("/outings/new", { :controller => "outings", :action => "invite" })
   get("/outings/:path_id", { :controller => "outings", :action => "show" })
 
+  post("/insert_outing", { :controller => "outings", :action => "create" })
+
 
 ##############Ignore
 
