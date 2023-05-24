@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   # Routes for home page
   get("/", controller: "outings", action: "snapshot")
+  get("/outings/:path_id", { :controller => "outings", :action => "show" })
 
   # Routes for the Outing response resource:
 
@@ -68,7 +69,6 @@ Rails.application.routes.draw do
   # READ
   get("/outings", { :controller => "outings", :action => "index" })
   
-  get("/outings/:path_id", { :controller => "outings", :action => "show" })
   
   # UPDATE
   

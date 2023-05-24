@@ -7,6 +7,31 @@ class OutingsController < ApplicationController
     @completed_outings = @current_user.completed_outings.order({ :updated_at => :desc })
     render({template: "outings/snapshot.html.erb"})
   end
+
+  def show
+    the_id = params.fetch("path_id")
+    #Current_user.specific_outing.status
+    #Confirm user has outing
+    @matching_outing = @current_user.outings.where({ :id => the_id }).first
+    @the_outing = @matching_outing
+
+    #If user does not have permission to see page, reroute
+    if @matching_outing == nil
+      redirect_to("/outings", { :alert => "You weren't invited to that party."})
+
+    elsif @matching_outing.completed
+      #Show results
+      render({ :template => "outings/show.html.erb" })
+      ###CLEAN UP LATER
+    elsif @matching_outing.outing_participants.where({user_id: @current_user.id}).first.participant_submitted
+      #Show hold message
+      render({ :template => "outings/hold.html.erb" })
+    else
+      #Prompt user to complete outing response
+      render({ :template => "outings/response_form.html.erb" })
+    end  
+  end
+
   def index
     matching_outings = Outing.all
 
@@ -15,15 +40,16 @@ class OutingsController < ApplicationController
     render({ :template => "outings/index.html.erb" })
   end
 
-  def show
-    the_id = params.fetch("path_id")
 
-    matching_outings = Outing.where({ :id => the_id })
+  # def show
+  #   the_id = params.fetch("path_id")
 
-    @the_outing = matching_outings.at(0)
+  #   matching_outings = Outing.where({ :id => the_id })
 
-    render({ :template => "outings/show.html.erb" })
-  end
+  #   @the_outing = matching_outings.at(0)
+
+  #   render({ :template => "outings/show.html.erb" })
+  # end
 
   def create
     the_outing = Outing.new
