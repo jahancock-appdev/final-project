@@ -10,4 +10,6 @@
 #  participant_id       :integer
 #
 class OutingResponse < ApplicationRecord
+  belongs_to :option, required: true, class_name: "OutingOption", foreign_key: "option_id", counter_cache: :responses_count
+  belongs_to :participant, required: true, class_name: "OutingParticipant", foreign_key: "participant_id"
 end
