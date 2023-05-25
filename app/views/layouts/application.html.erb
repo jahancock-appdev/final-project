@@ -19,11 +19,9 @@
    <nav>
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/outings">Outings</a></li>
-        <li><a href="/restaurants">Restaurants</a></li>
-        <li><a href="/outing_participants">Invitations</a></li>
-        <li><a href="/outing_responses">Outing Responses</a></li>
-        <li><a href="/outing_options">Outing Options</a></li>
+        <li>[[New Outing as button?]]</li>
+        <li><a href="/restaurants">Browse restaurants</a></li>
+        
         <% if @current_user == nil%>
           <li>
             <a href="/user_sign_up">Sign up</a>
@@ -33,9 +31,15 @@
           </li>
         <% else %>
           <li>
-            <a href="/bookmarks">Bookmarks</a></li>
+            <a href="/bookmarks">My saved restaurants</a></li>
           <li>
             <a href="/user_sign_out">Sign out</a>
+          </li>
+          <li>
+            Outing details
+          </li>
+          <li>
+            Restaurant details
           </li>
         <% end%>
       </ul>
