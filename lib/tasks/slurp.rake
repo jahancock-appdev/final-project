@@ -6,7 +6,7 @@ namespace :slurp do
     #Restaurant.destroy_all
     # RestaurantCategory.destroy_all
 
-    csv_text = File.read(Rails.root.join("lib", "csvs", "yelp_all_cats.csv"))
+    csv_text = File.read(Rails.root.join("lib", "csvs", "yelp_all_cats_sample.csv"))
     
     csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
 
@@ -19,7 +19,7 @@ namespace :slurp do
 
     end
 
-    csv_text = File.read(Rails.root.join("lib", "csvs", "yelp_academic_dataset_business.csv"))
+    csv_text = File.read(Rails.root.join("lib", "csvs", "yelp_academic_dataset_business_sample.csv"))
     
     csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
 
@@ -41,17 +41,17 @@ namespace :slurp do
     end
     
     
-    csv_text = File.read(Rails.root.join("lib", "csvs", "yelp_bus_id_to_cats.csv"))
+    # csv_text = File.read(Rails.root.join("lib", "csvs", "yelp_bus_id_to_cats_sample.csv"))
     
-    csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
-    csv.each_with_index do |row, the_index|
-      #row.to_hash
-      rc = RestaurantCategory.new
-      rc.category_id = Category.where({category: row["categories"] }).first.id 
-      rc.restaurant_id = Restaurant.where({yelp_business_id: row["business_id"] }).first.id 
-      rc.save
-      puts "#{the_index} RC saved"
-    end
+    # csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
+    # csv.each_with_index do |row, the_index|
+    #   #row.to_hash
+    #   rc = RestaurantCategory.new
+    #   rc.category_id = Category.where({category: row["categories"] }).first.id 
+    #   rc.restaurant_id = Restaurant.where({yelp_business_id: row["business_id"] }).first.id 
+    #   rc.save
+    #   puts "#{the_index} RC saved"
+    # end
     
 
 
