@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_25_003654) do
+ActiveRecord::Schema.define(version: 2023_05_25_005901) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "restaurant_id"
     t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -48,6 +54,13 @@ ActiveRecord::Schema.define(version: 2023_05_25_003654) do
     t.boolean "completed"
     t.integer "sender_id"
     t.integer "outing_participants_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "restaurant_categories", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "restaurant_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
