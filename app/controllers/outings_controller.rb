@@ -112,7 +112,7 @@ class OutingsController < ApplicationController
     end
     ###Need to figure out rerouting
 
-      redirect_to("/", { :notice => "Outing option created successfully." })
+      redirect_to("/outings/#{the_outing.id}", { :notice => "Outing option created successfully." })
 
   end
 

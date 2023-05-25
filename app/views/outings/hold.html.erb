@@ -13,44 +13,30 @@
         </a>
       </div>
 
-      <div>
-        <a href="/delete_outing/<%= @the_outing.id %>">
-          Delete outing
-        </a>
-      </div>
-    </div>
+ <dl>
 
-    <dl>
       <dt>
-        Completed
+        Outing participants
       </dt>
       <dd>
-        <%= @the_outing.completed %>
+      <ul>
+        <% @the_outing.participants.each do |participant| %>
+        <li>
+        <%= participant.username %>
+        </li>
+        <% end%>
+        </ul>
       </dd>
 
       <dt>
-        Sender
-      </dt>
-      <dd>
-        <%= @the_outing.sender_id %>
-      </dd>
-
-      <dt>
-        Outing participants count
-      </dt>
-      <dd>
-        "<%= @the_outing.outing_participants_count %>"[[Add user details]]
-      </dd>
-
-      <dt>
-        Created at
+        Originated at
       </dt>
       <dd>
         <%= time_ago_in_words(@the_outing.created_at) %> ago
       </dd>
 
       <dt>
-        Updated at
+        Last submission
       </dt>
       <dd>
         <%= time_ago_in_words(@the_outing.updated_at) %> ago

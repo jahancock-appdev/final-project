@@ -7,108 +7,34 @@
 </div>
 
 <hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new restaurant
-    </h2>
-
-    <form action="/insert_restaurant" method="post">
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name">
-      </div>
-
-      <div>
-        <label for="address_box">
-          Address
-        </label>
-
-        <input type="text" id="address_box" name="query_address">
-      </div>
-
-      <div>
-        <label for="cuisine_box">
-          Cuisine
-        </label>
-
-        <input type="text" id="cuisine_box" name="query_cuisine">
-      </div>
-
-      <div>
-        <label for="price_point_box">
-          Price point
-        </label>
-
-        <input type="text" id="price_point_box" name="query_price_point">
-      </div>
-
-      <div>
-        <label for="bookmarks_count_box">
-          Bookmarks count
-        </label>
-
-        <input type="text" id="bookmarks_count_box" name="query_bookmarks_count">
-      </div>
-
-      <button>
-        Create restaurant
-      </button>
-    </form>
-  </div>
-</div>
-
-<hr>
 <div>
   <div>
     <table border="1">
       <tr>
         <th>
-          ID
-        </th>
-
-        <th>
           Name
         </th>
-
         <th>
           Address
         </th>
-
         <th>
-          Cuisine
+          Tags
         </th>
-
         <th>
-          Price point
+          Rating
         </th>
-
         <th>
-          Bookmarks count
+          Number of Reviewers
         </th>
-
+        
         <th>
-          Created at
         </th>
-
-        <th>
-          Updated at
-        </th>
-
         <th>
         </th>
       </tr>
-
+     
       <% @list_of_restaurants.each do |a_restaurant| %>
       <tr>
-        <td>
-          <%= a_restaurant.id %>
-        </td>
-
         <td>
           <%= a_restaurant.name %>
         </td>
@@ -116,35 +42,36 @@
         <td>
           <%= a_restaurant.address %>
         </td>
-
         <td>
-          <%= a_restaurant.cuisine %>
+          TBD Tags
         </td>
 
         <td>
-          <%= a_restaurant.price_point %>
+          <%= a_restaurant.stars %>
+        </td>
+  
+        <td>
+          <%= a_restaurant.review_count %>
         </td>
 
         <td>
-          <%= a_restaurant.bookmarks_count %>
+          <% current_bookmark = @current_user.bookmarks.where({ :restaurant_id => a_restaurant.id}) %>
+          <% if current_bookmark.count == 0 %>
+            <form action="/insert_bookmark" method="post">
+                <input type="hidden" name="query_restaurant_id" value="<%= a_restaurant.id %>">
+            <button>Bookmark!</button>
+            </form>
+          <% else %>
+            <a href="/delete_bookmark/<%= current_bookmark.at(0).id %>">Un-bookmark</a>
+          <% end %>
         </td>
 
         <td>
-          <%= time_ago_in_words(a_restaurant.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_restaurant.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/restaurants/<%= a_restaurant.id %>">
-            Show details
-          </a>
+          <a href="/restaurants/<%= a_restaurant.id %>">Show details</a>
         </td>
       </tr>
       <% end %>
     </table>
   </div>
 </div>
-
-<hr>
+    <hr>

@@ -6,52 +6,108 @@
     <h2>
       Results
     </h2>
-    <p>[[Add restaurants]]</p>
+
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Address
+        </th>
+        <th>
+          Tags
+        </th>
+        <th>
+          Rating
+        </th>
+        <th>
+          Number of Reviewers
+        </th>
+        
+        <th>
+        </th>
+        <th>
+        </th>
+      </tr>
+      <%#  Loop through selected restaurants%>
+      <% @the_outing.selected_options.each do |a_restaurant| %>
+      <tr>
+        <td>
+          <%= a_restaurant.restaurant.name %>
+        </td>
+
+        <td>
+          <%= a_restaurant.restaurant.address %>
+        </td>
+        <td>
+          TBD Tags
+        </td>
+
+        <td>
+          <%= a_restaurant.restaurant.stars %>
+        </td>
+  
+        <td>
+          <%= a_restaurant.restaurant.review_count %>
+        </td>
+
+        <td>
+          <% current_bookmark = @current_user.bookmarks.where({ :restaurant_id => a_restaurant.restaurant.id}) %>
+          <% if current_bookmark.count == 0 %>
+            <form action="/insert_bookmark" method="post">
+                <input type="hidden" name="query_restaurant_id" value="<%= a_restaurant.restaurant.id %>">
+            <button>Bookmark!</button>
+            </form>
+          <% else %>
+            <a href="/delete_bookmark/<%= current_bookmark.at(0).id %>">Un-bookmark</a>
+          <% end %>
+        </td>
+
+        <td>
+          Maybe show details
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+    <hr>
+    
     <div>
       <div>
         <a href="/outings">
           Go back
         </a>
       </div>
-
-      <div>
-        <a href="/delete_outing/<%= @the_outing.id %>">
-          Delete outing
-        </a>
-      </div>
     </div>
 
     <dl>
+
       <dt>
-        Completed
+        Outing participants
       </dt>
       <dd>
-        <%= @the_outing.completed %>
+      <ul>
+        <% @the_outing.participants.each do |participant| %>
+        <li>
+        <%= participant.username %>
+        </li>
+        <% end%>
+        </ul>
       </dd>
 
       <dt>
-        Sender
-      </dt>
-      <dd>
-        <%= @the_outing.sender_id %>
-      </dd>
-
-      <dt>
-        Outing participants count
-      </dt>
-      <dd>
-        "<%= @the_outing.outing_participants_count %>"[[Add user details]]
-      </dd>
-
-      <dt>
-        Created at
+        Originated at
       </dt>
       <dd>
         <%= time_ago_in_words(@the_outing.created_at) %> ago
       </dd>
 
       <dt>
-        Updated at
+        Completed at
       </dt>
       <dd>
         <%= time_ago_in_words(@the_outing.updated_at) %> ago
