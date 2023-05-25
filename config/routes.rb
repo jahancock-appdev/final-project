@@ -1,5 +1,43 @@
 Rails.application.routes.draw do
 
+  # Routes for the Category resource:
+
+  # CREATE
+  post("/insert_category", { :controller => "categories", :action => "create" })
+          
+  # READ
+  get("/categories", { :controller => "categories", :action => "index" })
+  
+  get("/categories/:path_id", { :controller => "categories", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_category/:path_id", { :controller => "categories", :action => "update" })
+  
+  # DELETE
+  get("/delete_category/:path_id", { :controller => "categories", :action => "destroy" })
+
+  #------------------------------
+
+  # Routes for the Restaurant category resource:
+
+  # CREATE
+  post("/insert_restaurant_category", { :controller => "restaurant_categories", :action => "create" })
+          
+  # READ
+  get("/restaurant_categories", { :controller => "restaurant_categories", :action => "index" })
+  
+  get("/restaurant_categories/:path_id", { :controller => "restaurant_categories", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_restaurant_category/:path_id", { :controller => "restaurant_categories", :action => "update" })
+  
+  # DELETE
+  get("/delete_restaurant_category/:path_id", { :controller => "restaurant_categories", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for home page
   get("/", controller: "outings", action: "snapshot")
   get("/outings/new", { :controller => "outings", :action => "invite" })

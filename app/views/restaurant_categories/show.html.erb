@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Restaurant category #<%= @the_restaurant_category.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/restaurant_categories">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_restaurant_category/<%= @the_restaurant_category.id %>">
+          Delete restaurant category
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Category
+      </dt>
+      <dd>
+        <%= @the_restaurant_category.category_id %>
+      </dd>
+
+      <dt>
+        Restaurant
+      </dt>
+      <dd>
+        <%= @the_restaurant_category.restaurant_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_restaurant_category.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_restaurant_category.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit restaurant category
+    </h2>
+
+    <form action="/modify_restaurant_category/<%= @the_restaurant_category.id %>"  method="post" >
+      <div>
+        <label for="category_id_box">
+          Category
+        </label>
+
+        <input type="text" id="category_id_box" name="query_category_id" value="<%= @the_restaurant_category.category_id %>">
+      </div>
+
+      <div>
+        <label for="restaurant_id_box">
+          Restaurant
+        </label>
+
+        <input type="text" id="restaurant_id_box" name="query_restaurant_id" value="<%= @the_restaurant_category.restaurant_id %>">
+      </div>
+
+      <button>
+        Update restaurant category
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
