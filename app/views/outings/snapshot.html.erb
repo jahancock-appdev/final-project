@@ -3,7 +3,7 @@
   <a href="/outings/new">Create a new outing!</a>
 </div>
 
-
+<% if @outstanding_outings.count > 0%>
 <div>
   <h1>
     List of all incomplete outings
@@ -81,8 +81,10 @@
 </div>
 
 <hr>
+<% end %>
 
 
+<% if @awaiting_outings.count > 0%>
 
 <div>
   <h1>
@@ -162,8 +164,9 @@
 
 <hr>
 
+<% end %>
 
-
+<% if @completed_outings.count > 0%>
 <div>
   <h1>
     List of all completed outings
@@ -239,5 +242,5 @@
     </table>
   </div>
 </div>
-
+<% end %>
 <hr>

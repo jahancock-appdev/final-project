@@ -21,11 +21,7 @@
         <label for="username_box">Username</label>
         <input id="username_box" name="query_username" value="<%= @current_user.username %>">
       </div>
-      <div>
-        <label for="bookmarks_count_box">Bookmarks count</label>
-        <input id="bookmarks_count_box" name="query_bookmarks_count" value="<%= @current_user.bookmarks_count %>">
-      </div>
-
+      
       <div>
         <label for="password_box">Password</label>
         <input id="password_box" name="query_password" placeholder="Choose a password..." type="password">
@@ -41,4 +37,5 @@
       </button>
     </form>
   </div>
+  <a href="/cancel_user_account">Delete my account</a>
 </div>
