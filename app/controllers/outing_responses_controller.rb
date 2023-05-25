@@ -1,22 +1,5 @@
 class OutingResponsesController < ApplicationController
-  def index
-    matching_outing_responses = OutingResponse.all
-
-    @list_of_outing_responses = matching_outing_responses.order({ :created_at => :desc })
-
-    render({ :template => "outing_responses/index.html.erb" })
-  end
-
-  def show
-    the_id = params.fetch("path_id")
-
-    matching_outing_responses = OutingResponse.where({ :id => the_id })
-
-    @the_outing_response = matching_outing_responses.at(0)
-
-    render({ :template => "outing_responses/show.html.erb" })
-  end
-
+  
   def create
     selected_options = params.fetch("interest")
     outing_id = params.fetch("query_outing_id")
