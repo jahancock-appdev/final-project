@@ -23,6 +23,24 @@
     <%= f.text_field :city_cont, :placeholder => "Enter a few characters" %>
   </div>
 
+<div>
+  <%= f.label :categories_category_cont, "Tags include" %>
+  <%= f.text_field :categories_category_cont, :placeholder => "Enter a few characters"  %>
+</div>
+
+<div>
+  <%= f.label :categories_category_eq, "Category" %>
+  <%= f.select :categories_category_eq, options_from_collection_for_select(Category.all, :category, :category, @q.categories_category_eq), { :include_blank => true } %>
+</div>
+<div>
+  <%= f.label :city_eq, "City" %>
+  <%= f.select :city_eq, options_from_collection_for_select(Restaurant.all, :city, :city, @q.city_eq), { :include_blank => true } %>
+</div>
+<div>
+  <%= f.label :stars_gteq, "Rating at least" %>
+  <%= f.select :stars_gteq, options_from_collection_for_select(Restaurant.all, :stars, :stars, @q.stars_gteq), { :include_blank => true } %>
+</div>
+
   <%= f.submit :class => "btn btn-primary btn-block" %>
   
   <a href="/restaurants">Clear filters</a>
