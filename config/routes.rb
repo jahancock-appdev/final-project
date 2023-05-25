@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   
 
   
-  
+    #------------------------------
+
 
 
   # Routes for the Outing response resource:
