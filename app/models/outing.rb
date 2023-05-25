@@ -14,4 +14,8 @@ class Outing < ApplicationRecord
   has_many  :outing_participants, class_name: "OutingParticipant", foreign_key: "outing_id", dependent: :destroy
   has_many  :outing_options, class_name: "OutingOption", foreign_key: "outing_id", dependent: :destroy
   has_many :participants, through: :outing_participants, source: :participant
+  def zebra
+    num_submitted = self.outing_participants.where({participant_submitted: true}).count
+    return self.outing_participants_count == num_submitted
+  end
 end
