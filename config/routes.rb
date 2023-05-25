@@ -29,25 +29,6 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  # Routes for the Outing option resource:
-
-  # CREATE
-  post("/insert_outing_option", { :controller => "outing_options", :action => "create" })
-          
-  # READ
-  get("/outing_options", { :controller => "outing_options", :action => "index" })
-  
-  get("/outing_options/:path_id", { :controller => "outing_options", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_outing_option/:path_id", { :controller => "outing_options", :action => "update" })
-  
-  # DELETE
-  get("/delete_outing_option/:path_id", { :controller => "outing_options", :action => "destroy" })
-
-  #------------------------------
-
   # Routes for the Outing resource:
 
   # CREATE
