@@ -70,13 +70,7 @@ Rails.application.routes.draw do
   
   get("/restaurants/:path_id", { :controller => "restaurants", :action => "show" })
   
-  # UPDATE
-  
-  post("/modify_restaurant/:path_id", { :controller => "restaurants", :action => "update" })
-  
-  # DELETE
-  get("/delete_restaurant/:path_id", { :controller => "restaurants", :action => "destroy" })
-
+ 
   #------------------------------
 
   # Routes for the User account:
