@@ -1,11 +1,17 @@
 class RestaurantsController < ApplicationController
   def index
-    matching_restaurants = Restaurant.all
-
-    @list_of_restaurants = matching_restaurants.order({ :created_at => :desc })
-
+    @q = Restaurant.ransack(params[:q])
+    @list_of_restaurants = @q.result
+    
     render({ :template => "restaurants/index.html.erb" })
   end
+  # def index
+  #   matching_restaurants = Restaurant.all
+
+  #   @list_of_restaurants = matching_restaurants.order({ :created_at => :desc })
+
+  #   render({ :template => "restaurants/index.html.erb" })
+  # end
 
   def show
     the_id = params.fetch("path_id")
