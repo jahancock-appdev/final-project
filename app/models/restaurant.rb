@@ -21,4 +21,7 @@ class Restaurant < ApplicationRecord
   has_many  :bookmarks, class_name: "Bookmark", foreign_key: "restaurant_id", dependent: :destroy
   has_many  :outing_options, class_name: "OutingOption", foreign_key: "restaurant_id", dependent: :nullify
   validates :name, presence: true
+  has_many(:restaurant_categories, { :dependent => :destroy })
+  has_many(:categories, { :through => :restaurant_categories, :source => :category })
+
 end

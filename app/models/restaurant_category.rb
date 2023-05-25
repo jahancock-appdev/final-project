@@ -9,4 +9,6 @@
 #  restaurant_id :integer
 #
 class RestaurantCategory < ApplicationRecord
+  belongs_to(:restaurant)
+  belongs_to(:category)
 end
