@@ -1,42 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>
-    FinalProject
-  </title>
+  <head>
+    <title>
+      FinalProject
+    </title>
+    <%= csrf_meta_tags %>
 
-  <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
-  <meta charset="utf-8">
+    <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
+    <meta charset="utf-8">
 
-  <!-- Make it responsive to small screens. Include only if you're using responsive CSS. -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Make it responsive to small screens. Include only if you're using responsive CSS. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csp_meta_tag %>
 
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+    <!-- Helper methods that create <link>s and <script>s for all of the stylesheets and javascript files in the non-`/public/` assets folders. -->
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <%# javascript_pack_tag  'application' %>
 
-  <!-- Helper methods that create <link>s and <script>s for all of the stylesheets and javascript files in the non-`/public/` assets folders. -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.css">
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%# javascript_pack_tag  'application' %>
+    <!-- Rendering a partial that has all the <link>s and <script>s for assets we are pulling from content-delivery networks. -->
+    <%#= render "shared/cdn_assets" %>
 
-  <!-- Rendering a partial that has all the <link>s and <script>s for assets we are pulling from content-delivery networks. -->
-  <%= render "shared/cdn_assets" %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style>
+      body { padding-bottom: 70px }
+    </style>
+  </head>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <style>
-    body { padding-bottom: 70px }
-  </style>
-</head>
+  <body>
+    <%# render "shared/navbar" %>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Meal Match</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/outings">Outings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/restaurants">Restaurants</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/bookmarks">Saved Restaurants</a>
+            </li>
+          </ul>
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <% if @current_user == nil%>
+              <li class="nav-item">
+                <a class="nav-link" href="/user_sign_up">Sign up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/user_sign_in">Sign in</a>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <a class="nav-link"href="/edit_user_profile">My Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/user_sign_out">Sign out</a>
+              </li>
+            <% end%>
+            </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <%= render "shared/flashes" %>
 
-<body>
-  <%= render "shared/navbar" %>
-
-  <div class="container">
-    <%= render "shared/flashes" %>
-
-    <%= yield %>
-  </div>
-
-</body>
+      <%= yield %>
+    </div>
+  </body>
 </html>
