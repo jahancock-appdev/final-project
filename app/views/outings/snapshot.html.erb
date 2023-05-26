@@ -17,27 +17,18 @@
     <table border="1">
       <tr>
         <th>
-          ID
-        </th>
-
-        <th>
-          Completed
-        </th>
-
-        <th>
-          Sender
-        </th>
-
-        <th>
-          Outing participants count
-        </th>
-
-        <th>
           Created at
         </th>
+        <th>
+          Last Activity
+        </th>
 
         <th>
-          Updated at
+          Other participants
+        </th>
+
+        <th>
+          Status
         </th>
 
         <th>
@@ -47,27 +38,33 @@
       <% @outstanding_outings.each do |an_outing| %>
       <tr>
         <td>
-          <%= an_outing.id %>
-        </td>
-
-        <td>
-          <%= an_outing.completed %>
-        </td>
-
-        <td>
-          <%= an_outing.sender_id %>
-        </td>
-
-        <td>
-          <%= an_outing.outing_participants_count %>
-        </td>
-
-        <td>
           <%= time_ago_in_words(an_outing.created_at) %> ago
         </td>
         <td>
           <%= time_ago_in_words(an_outing.updated_at) %> ago
         </td>
+
+        <td>
+          
+          <% other_participants = an_outing.participants.where.not({id: @current_user.id})%>
+          <% other_participants.each do |participant| %>
+            <div>
+          <%= participant.username %>
+           </div>
+          <% end  %>
+         
+        </td>
+
+        <td>
+          <% if an_outing.completed == true %>
+            Completed
+          <% elsif an_outing.outing_participants.where(user_id: @current_user.id ).first %>
+            Awaiting others
+          <% else%>
+            Action needed
+          <% end %>
+        </td>      
+        
 
         <td>
           <a href="/outings/<%= an_outing.id %>">
@@ -96,30 +93,21 @@
 <hr>
 <div>
   <div>
-    <table border="1">
+   <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Completed
-        </th>
-
-        <th>
-          Sender
-        </th>
-
-        <th>
-          Outing participants count
-        </th>
-
         <th>
           Created at
         </th>
+        <th>
+          Last Activity
+        </th>
 
         <th>
-          Updated at
+          Other participants
+        </th>
+
+        <th>
+          Status
         </th>
 
         <th>
@@ -129,27 +117,31 @@
       <% @awaiting_outings.each do |an_outing| %>
       <tr>
         <td>
-          <%= an_outing.id %>
-        </td>
-
-        <td>
-          <%= an_outing.completed %>
-        </td>
-
-        <td>
-          <%= an_outing.sender_id %>
-        </td>
-
-        <td>
-          <%= an_outing.outing_participants_count %>
-        </td>
-
-        <td>
           <%= time_ago_in_words(an_outing.created_at) %> ago
         </td>
         <td>
           <%= time_ago_in_words(an_outing.updated_at) %> ago
         </td>
+
+        <td>
+          <% other_participants = an_outing.participants.where.not({id: @current_user.id})%>
+          <% other_participants.each do |participant| %>
+            <div>
+          <%= participant.username %>
+           </div>
+          <% end  %>
+        </td>
+
+        <td>
+          <% if an_outing.completed == true %>
+            Completed
+          <% elsif an_outing.outing_participants.where(user_id: @current_user.id ).first %>
+            Awaiting others
+          <% else%>
+            Action needed
+          <% end %>
+        </td>      
+        
 
         <td>
           <a href="/outings/<%= an_outing.id %>">
@@ -180,27 +172,18 @@
     <table border="1">
       <tr>
         <th>
-          ID
-        </th>
-
-        <th>
-          Completed
-        </th>
-
-        <th>
-          Sender
-        </th>
-
-        <th>
-          Outing participants count
-        </th>
-
-        <th>
           Created at
         </th>
+        <th>
+          Last Activity
+        </th>
 
         <th>
-          Updated at
+          Other participants
+        </th>
+
+        <th>
+          Status
         </th>
 
         <th>
@@ -210,27 +193,33 @@
       <% @completed_outings.each do |an_outing| %>
       <tr>
         <td>
-          <%= an_outing.id %>
-        </td>
-
-        <td>
-          <%= an_outing.completed %>
-        </td>
-
-        <td>
-          <%= an_outing.sender_id %>
-        </td>
-
-        <td>
-          <%= an_outing.outing_participants_count %>
-        </td>
-
-        <td>
           <%= time_ago_in_words(an_outing.created_at) %> ago
         </td>
         <td>
           <%= time_ago_in_words(an_outing.updated_at) %> ago
         </td>
+
+        <td>
+          
+          <% other_participants = an_outing.participants.where.not({id: @current_user.id})%>
+          <% other_participants.each do |participant| %>
+            <div>
+          <%= participant.username %>
+           </div>
+          <% end  %>
+         
+        </td>
+
+        <td>
+          <% if an_outing.completed == true %>
+            Completed
+          <% elsif an_outing.outing_participants.where(user_id: @current_user.id ).first %>
+            Awaiting others
+          <% else%>
+            Action needed
+          <% end %>
+        </td>      
+        
 
         <td>
           <a href="/outings/<%= an_outing.id %>">

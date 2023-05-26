@@ -48,30 +48,28 @@
 <hr>
 <div>
   <div>
-    <table border="1">
+    <table class="table">
+      <thead>
       <tr>
-        <th>
+        <th scope="col">
           Name
         </th>
-        <th>
+        <th scope="col">
           Address
         </th>
-        <th>
-          Tags
-        </th>
-        <th>
+        
+        <th scope="col">
           Rating
         </th>
-        <th>
-          Number of Reviewers
-        </th>
+      
         
-        <th>
+        <th scope="col">
         </th>
-        <th>
+        <th scope="col">
         </th>
       </tr>
-     
+     </thead>
+     <tbody>
       <% @list_of_restaurants.each do |a_restaurant| %>
       <tr>
         <td>
@@ -81,24 +79,19 @@
         <td>
           <%= a_restaurant.address %>
         </td>
+     
         <td>
-          TBD Tags
-        </td>
-
-        <td>
-          <%= a_restaurant.stars %>
+          <%= a_restaurant.stars %> (<%= a_restaurant.review_count %>)
         </td>
   
-        <td>
-          <%= a_restaurant.review_count %>
-        </td>
+  
 
         <td>
           <% current_bookmark = @current_user.bookmarks.where({ :restaurant_id => a_restaurant.id}) %>
           <% if current_bookmark.count == 0 %>
             <form action="/insert_bookmark" method="post">
                 <input type="hidden" name="query_restaurant_id" value="<%= a_restaurant.id %>">
-            <button>Bookmark!</button>
+            <button type="submit" class="btn btn-link">Bookmark!</button>
             </form>
           <% else %>
             <a href="/delete_bookmark/<%= current_bookmark.at(0).id %>">Un-bookmark</a>
@@ -110,6 +103,7 @@
         </td>
       </tr>
       <% end %>
+      </tbody>
     </table>
   </div>
 </div>

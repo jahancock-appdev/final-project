@@ -1,8 +1,14 @@
 <div>
   <div>
     <h1>
-      Restaurant #<%= @the_restaurant.id %> details
+      Restaurant #<%= @the_restaurant.name %> details
     </h1>
+     <div>
+        <% @the_restaurant.categories.each do |category|%>
+        <span class="badge text-bg-secondary"><%= category.category %></span>
+        <% end%>
+        </div>
+        <hr>
      <% current_bookmark = @current_user.bookmarks.where({ :restaurant_id => @the_restaurant.id}) %>
           <% if current_bookmark.count == 0 %>
             <form action="/insert_bookmark" method="post">
@@ -18,18 +24,12 @@
           Go back
         </a>
       </div>
-
+<hr>
      
     </div>
 
     <dl>
-      <dt>
-        Name
-      </dt>
-      <dd>
-        <%= @the_restaurant.name %>
-      </dd>
-
+ 
       <dt>
         Address
       </dt>
@@ -38,32 +38,19 @@
       </dd>
 
       <dt>
-        Number of stars
+        Rating
       </dt>
       <dd>
         <%= @the_restaurant.stars %> (<%= @the_restaurant.review_count %>)
       </dd>
 
       <dt>
-        Number of saves
+        Number of user saves
       </dt>
       <dd>
         <%= @the_restaurant.bookmarks_count %>
       </dd>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_restaurant.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_restaurant.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>

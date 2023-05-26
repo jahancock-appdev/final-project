@@ -20,4 +20,5 @@ class Outing < ApplicationRecord
     num_submitted = self.outing_participants.where({participant_submitted: true}).count
     return self.outing_participants_count == num_submitted
   end
+
 end
