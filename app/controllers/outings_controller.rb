@@ -1,10 +1,9 @@
 class OutingsController < ApplicationController
   def snapshot
-    matching_outings = @current_user.outings
-    @list_of_outings = matching_outings.order({ :created_at => :desc })
-    @outstanding_outings = @current_user.outstanding_outings.order({ :updated_at => :desc })
-    @awaiting_outings = @current_user.awaiting_outings.order({ :updated_at => :desc })
-    @completed_outings = @current_user.completed_outings.order({ :updated_at => :desc })
+    matching_outings = @current_user.outings.order({:updated_at=> :desc}).limit(6)
+    @list_of_outings1 = matching_outings.first(3)
+    @list_of_outings2 = matching_outings.last(3)
+    
     render({template: "outings/snapshot.html.erb"})
   end
 
@@ -36,9 +35,8 @@ class OutingsController < ApplicationController
     render({template: "outings/invitation_form.html.erb"})
   end
   def index
-    matching_outings = Outing.all
-
-    @list_of_outings = matching_outings.order({ :created_at => :desc })
+    matching_outings = @current_user.outings
+    @list_of_outings = matching_outings.order({ :updated_at => :desc })
 
     render({ :template => "outings/index.html.erb" })
   end
